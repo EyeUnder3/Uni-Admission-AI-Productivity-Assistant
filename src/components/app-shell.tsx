@@ -5,7 +5,6 @@ import {
   Mail,
   FileText,
   ListChecks,
-  BookOpen,
   MessageSquare,
   ShieldCheck,
   Settings,
@@ -23,7 +22,7 @@ const NAV = [
   { to: "/email-generator", label: "Email Generator", icon: Mail },
   { to: "/summarizer", label: "Application Summarizer", icon: FileText },
   { to: "/task-planner", label: "AI Task Planner", icon: ListChecks },
-  { to: "/research-assistant", label: "AI Research Assistant", icon: BookOpen },
+  
   { to: "/workplace-assistant", label: "AI Workplace Assistant", icon: MessageSquare },
   { to: "/responsible-ai", label: "Responsible AI", icon: ShieldCheck },
   { to: "/settings", label: "Settings", icon: Settings },
@@ -44,7 +43,7 @@ export function BrandMark({ className }: { className?: string }) {
   );
 }
 
-function NavItems({ onNavigate }: { onNavigate?: () => void }) {
+function NavItems({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
@@ -72,7 +71,7 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function SidebarInner({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <div className="flex h-full flex-col bg-sidebar">
       <div className="flex items-center gap-3 px-5 py-6">
