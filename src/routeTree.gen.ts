@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailGeneratorRouteImport } from './routes/email-generator'
+import { Route as ResponsibleAiRouteImport } from './routes/responsible-ai'
 import { Route as SummarizerRouteImport } from './routes/summarizer'
 import { Route as TaskPlannerRouteImport } from './routes/task-planner'
 import { Route as WorkplaceAssistantRouteImport } from './routes/workplace-assistant'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const EmailGeneratorRoute = EmailGeneratorRouteImport.update({
   id: '/email-generator',
   path: '/email-generator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResponsibleAiRoute = ResponsibleAiRouteImport.update({
+  id: '/responsible-ai',
+  path: '/responsible-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SummarizerRoute = SummarizerRouteImport.update({
@@ -44,6 +50,7 @@ const WorkplaceAssistantRoute = WorkplaceAssistantRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/email-generator': typeof EmailGeneratorRoute
+  '/responsible-ai': typeof ResponsibleAiRoute
   '/summarizer': typeof SummarizerRoute
   '/task-planner': typeof TaskPlannerRoute
   '/workplace-assistant': typeof WorkplaceAssistantRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/email-generator': typeof EmailGeneratorRoute
+  '/responsible-ai': typeof ResponsibleAiRoute
   '/summarizer': typeof SummarizerRoute
   '/task-planner': typeof TaskPlannerRoute
   '/workplace-assistant': typeof WorkplaceAssistantRoute
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/email-generator': typeof EmailGeneratorRoute
+  '/responsible-ai': typeof ResponsibleAiRoute
   '/summarizer': typeof SummarizerRoute
   '/task-planner': typeof TaskPlannerRoute
   '/workplace-assistant': typeof WorkplaceAssistantRoute
@@ -68,6 +77,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/email-generator'
+    | '/responsible-ai'
     | '/summarizer'
     | '/task-planner'
     | '/workplace-assistant'
@@ -75,6 +85,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/email-generator'
+    | '/responsible-ai'
     | '/summarizer'
     | '/task-planner'
     | '/workplace-assistant'
@@ -82,6 +93,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/email-generator'
+    | '/responsible-ai'
     | '/summarizer'
     | '/task-planner'
     | '/workplace-assistant'
@@ -90,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EmailGeneratorRoute: typeof EmailGeneratorRoute
+  ResponsibleAiRoute: typeof ResponsibleAiRoute
   SummarizerRoute: typeof SummarizerRoute
   TaskPlannerRoute: typeof TaskPlannerRoute
   WorkplaceAssistantRoute: typeof WorkplaceAssistantRoute
@@ -109,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/email-generator'
       fullPath: '/email-generator'
       preLoaderRoute: typeof EmailGeneratorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/responsible-ai': {
+      id: '/responsible-ai'
+      path: '/responsible-ai'
+      fullPath: '/responsible-ai'
+      preLoaderRoute: typeof ResponsibleAiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/summarizer': {
@@ -138,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EmailGeneratorRoute: EmailGeneratorRoute,
+  ResponsibleAiRoute: ResponsibleAiRoute,
   SummarizerRoute: SummarizerRoute,
   TaskPlannerRoute: TaskPlannerRoute,
   WorkplaceAssistantRoute: WorkplaceAssistantRoute,
