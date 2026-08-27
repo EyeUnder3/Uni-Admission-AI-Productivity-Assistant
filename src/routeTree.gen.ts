@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as EmailGeneratorRouteImport } from './routes/email-generator'
 import { Route as SummarizerRouteImport } from './routes/summarizer'
 import { Route as TaskPlannerRouteImport } from './routes/task-planner'
+import { Route as WorkplaceAssistantRouteImport } from './routes/workplace-assistant'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const TaskPlannerRoute = TaskPlannerRouteImport.update({
   path: '/task-planner',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkplaceAssistantRoute = WorkplaceAssistantRouteImport.update({
+  id: '/workplace-assistant',
+  path: '/workplace-assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/email-generator': typeof EmailGeneratorRoute
   '/summarizer': typeof SummarizerRoute
   '/task-planner': typeof TaskPlannerRoute
+  '/workplace-assistant': typeof WorkplaceAssistantRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/email-generator': typeof EmailGeneratorRoute
   '/summarizer': typeof SummarizerRoute
   '/task-planner': typeof TaskPlannerRoute
+  '/workplace-assistant': typeof WorkplaceAssistantRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,30 @@ export interface FileRoutesById {
   '/email-generator': typeof EmailGeneratorRoute
   '/summarizer': typeof SummarizerRoute
   '/task-planner': typeof TaskPlannerRoute
+  '/workplace-assistant': typeof WorkplaceAssistantRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/email-generator' | '/summarizer' | '/task-planner'
+  fullPaths:
+    | '/'
+    | '/email-generator'
+    | '/summarizer'
+    | '/task-planner'
+    | '/workplace-assistant'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/email-generator' | '/summarizer' | '/task-planner'
-  id: '__root__' | '/' | '/email-generator' | '/summarizer' | '/task-planner'
+  to:
+    | '/'
+    | '/email-generator'
+    | '/summarizer'
+    | '/task-planner'
+    | '/workplace-assistant'
+  id:
+    | '__root__'
+    | '/'
+    | '/email-generator'
+    | '/summarizer'
+    | '/task-planner'
+    | '/workplace-assistant'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +92,7 @@ export interface RootRouteChildren {
   EmailGeneratorRoute: typeof EmailGeneratorRoute
   SummarizerRoute: typeof SummarizerRoute
   TaskPlannerRoute: typeof TaskPlannerRoute
+  WorkplaceAssistantRoute: typeof WorkplaceAssistantRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TaskPlannerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/workplace-assistant': {
+      id: '/workplace-assistant'
+      path: '/workplace-assistant'
+      fullPath: '/workplace-assistant'
+      preLoaderRoute: typeof WorkplaceAssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   EmailGeneratorRoute: EmailGeneratorRoute,
   SummarizerRoute: SummarizerRoute,
   TaskPlannerRoute: TaskPlannerRoute,
+  WorkplaceAssistantRoute: WorkplaceAssistantRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
