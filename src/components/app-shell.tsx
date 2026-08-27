@@ -5,7 +5,6 @@ import {
   Mail,
   FileText,
   ListChecks,
-  BookOpen,
   MessageSquare,
   ShieldCheck,
   Settings,
